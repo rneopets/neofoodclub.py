@@ -107,6 +107,19 @@ jobs:
           name: wheels-musllinux-${{ matrix.python-version }}-${{ matrix.platform.target }}
           path: dist
 
+  ci:
+    name: Builds Pass
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [macos, linux, musllinux]
+    steps:
+      - name: Check all jobs passed
+        run: |
+          if [[ "${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}" == "true" ]]; then
+            echo "One or more jobs failed"
+            exit 1
+          fi
+
   release:
     name: Release
     runs-on: ubuntu-latest

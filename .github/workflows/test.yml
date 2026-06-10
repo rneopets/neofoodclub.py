@@ -48,3 +48,16 @@ jobs:
           uv sync --frozen --only-dev
 
       - uses: j178/prek-action@v2
+
+  tests:
+    name: Tests Pass
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [pytest, pre-commit]
+    steps:
+      - name: Check all jobs passed
+        run: |
+          if [[ "${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}" == "true" ]]; then
+            echo "One or more jobs failed"
+            exit 1
+          fi
