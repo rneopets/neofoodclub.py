@@ -108,7 +108,7 @@ jobs:
           path: dist
 
   ci:
-    name: CI
+    name: Builds Pass
     runs-on: ubuntu-latest
     if: always()
     needs: [macos, linux, musllinux]
