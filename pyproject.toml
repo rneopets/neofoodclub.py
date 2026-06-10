@@ -47,6 +47,7 @@ include = [
 exclude = [
     "**/__pycache__",
 ]
+extraPaths = ["python"]
 reportUnnecessaryTypeIgnoreComment = "warning"
 reportUnusedImport = "error"
 pythonVersion = "3.11"
