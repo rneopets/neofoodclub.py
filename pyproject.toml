@@ -37,9 +37,12 @@ exclude_lines = [
     "def __repr__"
 ]
 
+[tool.maturin]
+python-source = "python"
+
 [tool.pyright]
 include = [
-    "neofoodclub",
+    "python/neofoodclub",
 ]
 exclude = [
     "**/__pycache__",
