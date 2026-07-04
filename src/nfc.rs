@@ -216,8 +216,11 @@ impl NeoFoodClub {
         self.inner.modified()
     }
 
-    fn with_modifier(&mut self, modifier: Modifier) {
-        self.inner.with_modifier(modifier.inner);
+    fn with_modifier(&mut self, modifier: Modifier) -> PyResult<()> {
+        self.inner
+            .with_modifier(modifier.inner)
+            .map(|_| ())
+            .map_err(|e| PyValueError::new_err(e.to_string()))
     }
 
     fn max_ters(&self) -> Vec<f64> {
@@ -262,7 +265,7 @@ impl NeoFoodClub {
         self.inner
             .make_tenbet_bets(pirates_binary)
             .map(Bets::from)
-            .map_err(PyValueError::new_err)
+            .map_err(|e| PyValueError::new_err(e.to_string()))
     }
 
     fn make_max_ter_bets(&self) -> Bets {
@@ -301,7 +304,7 @@ impl NeoFoodClub {
         self.inner
             .make_bets_from_hash(bets_hash)
             .map(Bets::from)
-            .map_err(PyValueError::new_err)
+            .map_err(|e| PyValueError::new_err(e.to_string()))
     }
 
     fn make_bets_from_binaries(&self, binaries: Vec<u32>) -> Bets {

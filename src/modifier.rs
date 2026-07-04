@@ -55,7 +55,7 @@ impl Modifier {
 
         Ok(Modifier {
             inner: neofoodclub::modifier::Modifier::new(value, custom_odds, parsed_time)
-                .map_err(pyo3::exceptions::PyValueError::new_err)?,
+                .map_err(|e| pyo3::exceptions::PyValueError::new_err(e.to_string()))?,
         })
     }
 
@@ -103,7 +103,7 @@ impl Modifier {
 
     pub fn copy(&self) -> Self {
         Modifier {
-            inner: self.inner.copy(),
+            inner: self.inner.clone(),
         }
     }
 
