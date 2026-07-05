@@ -6,6 +6,11 @@
 [![Actions status](https://github.com/rneopets/neofoodclub.py/workflows/CI/badge.svg)](https://github.com/rneopets/neofoodclub.py/actions)
 [![image](https://img.shields.io/pypi/pyversions/neofoodclub.svg)](https://pypi.python.org/pypi/neofoodclub)
 
+**This repo is archived.** Development moved to
+[neofoodclub.rs](https://github.com/rneopets/neofoodclub.rs) (`crates/python`) — file
+issues and PRs there. The `neofoodclub` package on PyPI is still built and published
+from that repo.
+
 A mostly-Python implementation of functionality used in https://neofood.club/
 
 Notes:
